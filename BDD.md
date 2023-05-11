@@ -24,7 +24,7 @@ ex pour un animal :
 
 Ici, nous avons une entité ANIMAL
 
-et dedans, nous avons des attribus
+et dedans, nous avons des attributs
 
 - nom
 - sexe
@@ -83,7 +83,7 @@ Les `clé etrangères` sont représenté avec un #
 
 ### Règle de conversion
 
-Il existe plusieurs règles à connaitre concernant la conversion du MCD vers MLD.
+Il existe plusieurs règles à connaître concernant la conversion du MCD vers MLD.
 
 > Règle n°1
 
@@ -103,7 +103,7 @@ Si les deux cardinalités max. sont _n_, donc une relation _"plusieurs à plusie
 
 ### Écriture
 
-Donc, en se basant ce sur que je viens de dire, nous allons écrire nos MLD
+Donc, en se basant sur ce que je viens de dire, nous allons écrire nos MLD
 
 <details>
 
@@ -137,7 +137,7 @@ En résumé :
 
 ### MPD vers SQL
 
-Maintenant que nous avons notre MPD nous pouvons passer au SQL
+Maintenant, que nous avons notre MPD, nous pouvons passer au SQL
 
 ```sql
 CREATE DATABASE IF NOT EXISTS `GET_ANIMALS` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
@@ -162,9 +162,9 @@ CREATE TABLE `ANIMAL` (
 ALTER TABLE `ANIMAL` ADD FOREIGN KEY (`id`) REFERENCES `PROPRIETAIRE` (`id`);
 ```
 
-Par défaut, nous avons les valeurs ci dessus.
+Par défaut, nous avons les valeurs ci-dessus.
 
-Mais nous avons le pouvoir de changer celle ci directement sur le site cité ci dessus
+Mais nous avons le pouvoir de changer celle-ci directement sur le site cité ci-dessus.
 
 ```mcd
 PROPRIETAIRE: id, nom de famille[varchar (180)], prénom[varchar (180)]
