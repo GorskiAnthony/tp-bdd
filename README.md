@@ -208,3 +208,14 @@ Ce qu'il faut savoir :
 On reste simple, disons qu'on cherche les éléments de `base` tout en ayant assez d'information (pour un client, ne me donné pas son numéro d'imposition de l'année 2019, ou savoir s'il possède des animaux 😂).
 
 Pour les 3 exercices, je souhaite un MCD / MLD / MPD
+
+## 📚 Ressources
+
+-   [Mocodo](http://mocodo.wingi.net/)
+-   [QuickDBD](https://app.quickdatabasediagrams.com/#/)
+
+## 🧑‍🏫 Correction
+
+Il y a une branche `correction` pour voir la correction des exercices.
+
+⚠️ c'est une image avec toutes les informations, donc à n'utiliser qu'en cas de force majeur. ⚠️
