@@ -1,35 +1,39 @@
 # Construire l'organisation physique des données
 
-⚠️ Rappel : La méthode MERISE
+## La méthode MERISE
 
-MERISE est une méthode d'analyse et de conception des SI basée sur le principe de la séparation des données et des traitements. 
+MERISE est une méthode d'analyse et de conception des SI basée sur le principe de la séparation des données et des traitements.
 
 Elle possède un certain nombre de modèles (ou schémas) qui sont répartis sur trois niveaux :
 
-le niveau conceptuel; ([MCD](http://mocodo.wingi.net/))
-le niveau logique ou organisationnel; (MLD)
-le niveau physique. (MPD)
+1.  Le niveau conceptuel; (MCD)
+2.  Le niveau logique ou organisationnel; (MLD)
+3.  Le niveau physique. (MPD)
 
 Mais la question que tout le monde se pose, c'est :
 
-- OK, j'ai mon MCD, maintenant, ça me sert à quoi ?
+> OK, j'ai mon MCD, maintenant, ça me sert à quoi ?
 
 Très bonne question !
 
-Effectivement, déjà pour rappel, un MCD permet de faire quoi ? Il permet de définir une entité qui in fine sera transposée en table. Donc, chaque entité est unique (forcément) et possède des attributs.
+Effectivement, déjà pour rappel, un MCD permet de faire quoi ?
 
-ex pour un animal : 
+Il permet de définir une entité qui, in fine, sera transposée en table.
 
-![ex](img/entite.png)
+Donc, chaque entité est unique (forcément) et possède ce que l'on appelle des attributs.
 
-Ici, nous avons une entité ANIMAL
+## Exemple
 
-et dedans, nous avons des attributs
+Nous allons faire un exemple qui concerne un animal.
 
-- nom
-- sexe
-- date naissance
-- date décès
+![animal entite](img/entite.png)
+
+Ici, nous avons une entité ANIMAL et dedans, nous avons les attributs suivants:
+
+-   nom
+-   sexe
+-   date naissance
+-   date décès
 
 Avez-vous remarqué que le nom était souligné ?
 
@@ -39,7 +43,7 @@ Une clé primaire est un champ unique, généralement, c'est un `id`, mais ça p
 
 Ensuite, nous avons pour lier 2 entités, une `association`.
 
-En règle général, une association est un verbe.
+En règle général, une association est un verbe d'action.
 
 ![card](img/cardinalite.png)
 
@@ -48,7 +52,6 @@ Comment lire cette cardinalité ?
 <details>
 
 ```yaml
-
 - Un animal possède au minimum 0 propriétaire, et au maximum 1 propriétaire
 - Un propriétaire possède au minimum 0 animal et au maximum plusieurs animaux
 ```
@@ -59,22 +62,24 @@ Comment lire cette cardinalité ?
 
 ### Que veut dire MLD
 
-Le [MLD](https://fr.wikipedia.org/wiki/Merise_(informatique)#MLD_:_mod%C3%A8le_logique_des_donn%C3%A9es) veut dire `Modèle Logique des données`.
+Le [MLD](<https://fr.wikipedia.org/wiki/Merise_(informatique)#MLD_:_mod%C3%A8le_logique_des_donn%C3%A9es>) veut dire `Modèle Logique des données`.
 
-Le MLD résulte des relations issues du MCD ainsi que ses relations. 
+Le MLD résulte des relations issues du MCD ainsi que ses relations.
 
 Donc, à ce stade que savons nous ?
 
-- Qu'il existe des ` clé primaire` (`primary key`)
-- Qu'une entité représente in fine une table de notre BDD*
-- Qu'une entité est reliée par une `association`
-- Et que cette `association` possède des `cardinalité`
+-   Qu'il existe des ` clé primaire` (`primary key`)
+-   Qu'une entité représente in fine une table de notre BDD\*
+-   Qu'une entité est reliée par une `association`
+-   Et que cette `association` possède des `cardinalité`
+
+> BDD\*: Base de données
 
 Top ! Ça en fait beaucoup, mais ce n'est pas fini.
 
 Et oui, il existe aussi un type de clé, que nous appelons une `clé etrangère` ou `foreign key` en 🇬🇧
 
-Une `clé etrangère` est un attribut d'une relation qui fait référence à la `clé primaire` d'une autre relation
+Une `clé etrangère` est un attribut d'une relation qui fait référence à la `clé primaire` d'une autre table.
 
 Dans l'ex ci-dessus (avec les cardinalités), voilà comment on les représente
 
@@ -91,7 +96,7 @@ Il existe plusieurs règles à connaître concernant la conversion du MCD vers M
 
 > Règle n°2
 
-Si l'une des cardinalités max. vaut _1_, **une clé étrangère** est créée du côté de l'entité où se trouve le 1. 
+Si l'une des cardinalités max. vaut _1_, **une clé étrangère** est créée du côté de l'entité où se trouve le 1.
 
 Cette clé étrangère fera référence à l'identifiant dans la table associée.
 
@@ -99,7 +104,7 @@ Dans notre exemple (ANIMAL possède 1 PROPRIETAIRE), c'est donc l'animal qui aur
 
 > Règle n°3
 
-Si les deux cardinalités max. sont _n_, donc une relation _"plusieurs à plusieurs"_ **la relation devient une table à part entière** en relation avec les deux entités. On parle de *table de liaison, d'association, de jonction ou de correspondance*. Cette table de liaison contient 2 clefs étrangères vers les 2 tables à _lier_.
+Si les deux cardinalités max. sont _n_, donc une relation _"plusieurs à plusieurs"_ **la relation devient une table à part entière** en relation avec les deux entités. On parle de _table de liaison, d'association, de jonction ou de correspondance_. Cette table de liaison contient 2 clefs étrangères vers les 2 tables à _lier_.
 
 ### Écriture
 
@@ -115,25 +120,21 @@ Donc, en se basant sur ce que je viens de dire, nous allons écrire nos MLD
 
 Que veut dire MPD ?
 
-- Modèle Physique de données
-
-Ça veut dire quoi ?
+-   Modèle Physique de données
 
 C'est assez simple, en fait, c'est limite une formalité après tout ce qu'on vient de faire.
 
-En gros, c'est quoi ?
-
-En s’appuyant sur des règles simples, on va notifier les valeurs de nos attributs avec de réelles valeurs pour notre SGBDR.
+En gros, en s’appuyant sur des règles simples, on va notifier les valeurs de nos attributs avec de réelles valeurs pour notre SGBDR.
 
 Concrètement, cette étape permet de `construire la structure finale de la base de données` avec les différents liens entre les éléments qui la composent.
 
 En résumé :
 
-- Les `entités` se transforment en `tables`
-- Les propriétés se transforment en `champs` (ou `attributs`)
-- Les propriétés se trouvant au milieu d’une relation génèrent une nouvelle table ou glissent vers la table adéquate en fonction des cardinalités de la relation.
-- Les `identifiants` se transforment en clés et se retrouvent soulignés. Chaque table dispose d’au minimum 1 `clé primaire`
-- Les relations et les cardinalités se transforment en champs parfois soulignés : il s’agit de créer des « `clés étrangères` » reliées à une « clé primaire » dans une autre table.
+-   Les `entités` se transforment en `tables`
+-   Les propriétés se transforment en `champs` (ou `attributs`)
+-   Les propriétés se trouvant au milieu d’une relation génèrent une nouvelle table ou glissent vers la table adéquate en fonction des cardinalités de la relation.
+-   Les `identifiants` se transforment en clés et se retrouvent soulignés. Chaque table dispose d’au minimum 1 `clé primaire`
+-   Les relations et les cardinalités se transforment en champs parfois soulignés : il s’agit de créer des « `clés étrangères` » reliées à une « clé primaire » dans une autre table.
 
 ### MPD vers SQL
 
@@ -181,9 +182,8 @@ EXO 1 :
 Un employé appartient à un departement
 Un département appartient à plusieurs employes
 
-Trouver les entités. 
+Trouver les entités.
 Une fois trouvé, trouver leurs clé primaire et rechercher les relations potentiels.
-
 
 EXO 2 :
 
@@ -191,16 +191,16 @@ Un livre est écris par un et un seul auteur
 un auteur peut écrire plusieurs livres
 Un livre appartient a plusieurs genre
 
-Trouver les entités. 
+Trouver les entités.
 Une fois trouvé, trouver leurs clé primaire et rechercher les relations potentiels.
 
-EXO 3 : 
+EXO 3 :
 
 Un client peut passer plusieurs commande.
 Une commande a un client au minimum.
 Un produit concerne plusieurs commandes.
 
-Trouver les entités. 
+Trouver les entités.
 Une fois trouvé, trouver leurs clé primaire et rechercher les relations potentiels.
 
 Ce qu'il faut savoir :
